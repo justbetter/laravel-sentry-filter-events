@@ -18,7 +18,8 @@
     "require": {
         "php": "^8.3",
         "guzzlehttp/guzzle": "^7.5",
-        "laravel/framework": "^12.0|^13.0"
+        "laravel/framework": "^12.0|^13.0",
+        "sentry/sentry-laravel": "^4.25"
     },
     "require-dev": {
         "larastan/larastan": "^3.9",
