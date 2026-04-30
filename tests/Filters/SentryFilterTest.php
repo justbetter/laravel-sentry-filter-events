@@ -18,7 +18,7 @@ final class SentryFilterTest extends TestCase
     #[Test]
     public function it_can_filter_errors(): void
     {
-        $testData = [['message' => 'First'], ['exception' => 'Symfony\Component\HttpKernel\Exception\HttpException']];
+        $testData = [['message' => 'First'], ['exception' => HttpException::class]];
         Http::fake([
             'fake-url/test.json' => Http::response($testData),
         ]);

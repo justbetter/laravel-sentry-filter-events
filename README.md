@@ -13,10 +13,10 @@ composer require justbetter/laravel-sentry-filter-events
 You will have to enable the `before_send` handler in your `config/sentry.php`:
 
 ```php
-'before_send' => [\Rapidez\Sentry\Filters\SentryFilter::class, 'beforeSend'],
+'before_send' => [\JustBetter\LaravelSentryFilterEvents\Filters\SentryFilter::class, 'beforeSend'],
 ```
 
-You can then configure your `config/rapidez/sentry.php` as follows:
+You can then configure your `config/sentry-filter.php`, for example:
 ```php
 // List of errors to ignore
 'ignore_errors' => [
@@ -29,7 +29,7 @@ You can ignore either messages that contain certain strings, or whole Exception 
 
 ### Global filtering
 
-You can also use an external JSON file to filter errors globally. This has the same format as the list of ignore_errors (but then in JSON). For example:
+You can also use an external JSON file to filter errors globally. This has the same format as the list of ignore_errors (but then in JSON). Note that Exception class names need to be complete. For example:
 
 ```json
 {
