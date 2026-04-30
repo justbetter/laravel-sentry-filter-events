@@ -11,6 +11,7 @@ use JustBetter\LaravelSentryFilterEvents\Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use Sentry\Event;
 use Sentry\EventHint;
+use Sentry\ExceptionDataBag;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 final class SentryFilterTest extends TestCase
@@ -36,7 +37,9 @@ final class SentryFilterTest extends TestCase
         /** @var array{exception: Exception, shouldFilter: bool} $exception */
         foreach ($fakeExceptions as $exception) {
             $event = Event::createEvent();
-            $event->setMessage($exception['exception']->getMessage());
+            $event->setExceptions([
+                new ExceptionDataBag($exception['exception']),
+            ]);
 
             $hint = EventHint::fromArray(['exception' => $exception['exception']]);
 

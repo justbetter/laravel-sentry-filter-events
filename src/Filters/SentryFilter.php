@@ -17,7 +17,12 @@ class SentryFilter
         $messagesToFilter = collect($filterList)->pluck('message')->whereNotNull();
         $exceptionsToFilter = collect($filterList)->pluck('exception')->whereNotNull();
 
-        if ($messagesToFilter->contains(fn ($message) => str_contains($event->getMessage() ?? '', $message))) {
+        $exceptionMessages = collect($event->getExceptions())
+            ->map(fn ($exception) => $exception->getValue());
+
+        if ($exceptionMessages->contains(
+            fn ($exception) => $messagesToFilter->contains(fn ($message) => str_contains($exception, $message))
+        )) {
             return null;
         }
 
