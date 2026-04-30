@@ -24,7 +24,7 @@ class GetFilterList implements GetsFilterList
 
         $filterList = cache()
             ->flexible(
-                'sentry-filter-list:'.str($path)->slug(),
+                'sentry-filter-list:'.str($scope)->slug(),
                 [now()->addHour(), now()->addDay()],
                 fn () => $this->getFilterList($path),
             );
