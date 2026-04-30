@@ -19,7 +19,7 @@
         "php": "^8.3",
         "guzzlehttp/guzzle": "^7.5",
         "laravel/framework": "^12.0|^13.0",
-        "sentry/sentry-laravel": "^4.25"
+        "sentry/sentry-laravel": "^4.0"
     },
     "require-dev": {
         "larastan/larastan": "^3.9",
@@ -64,11 +64,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "JustBetter\\LaravelSentryFilterEvents\\LaravelSentryFilterEventsServiceProvider"
-            ],
-            "aliases": {
-                "LaravelSentryFilterEvents": "JustBetter\\LaravelSentryFilterEvents\\Facades\\LaravelSentryFilterEvents"
-            }
+                "JustBetter\\LaravelSentryFilterEvents\\ServiceProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
