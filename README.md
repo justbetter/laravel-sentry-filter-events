@@ -42,7 +42,7 @@ You can also use an external JSON file to filter errors globally. This has the s
 
 This package contains the ability to use multiple scopes (defined in the config file). This allows you to filter different errors in different situations.
 
-For example, you could create a scope for your frontend errors and retrieve the list like so:
+For example, if you have Sentry enabled on your frontend, you don't want to use the same filter list as you would for your backend errors. In that case, you could create a new scope in the config for your frontend errors and retrieve the list like so:
 
 ```php
 $filterList = resolve(\JustBetter\LaravelSentryFilterEvents\GetFilterList::class)->getCached('frontend');
