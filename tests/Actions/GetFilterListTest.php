@@ -29,7 +29,6 @@ final class GetFilterListTest extends TestCase
         $this->assertEqualsCanonicalizing($testData, $messages);
     }
 
-
     #[Test]
     public function it_handles_nonexistent_scopes(): void
     {
