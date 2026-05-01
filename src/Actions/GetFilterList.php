@@ -11,16 +11,12 @@ class GetFilterList implements GetsFilterList
     public function getCached(?string $scope = null): array
     {
         if ($scope === null) {
-            $scope = config('sentry-filter.default_scope');
+            $scope = config('sentry-filter.default_scope', 'default');
         }
-        $path = config("sentry-filter.scopes.$scope.filter_list");
+        $path = config("sentry-filter.scopes.$scope.filter_list", null);
 
         /** @var array<array<string, string>> $extraList */
-        $extraList = config("sentry-filter.scopes.$scope.ignore_errors");
-
-        if (! $path) {
-            return $extraList;
-        }
+        $extraList = config("sentry-filter.scopes.$scope.ignore_errors", []);
 
         $filterList = cache()
             ->flexible(
@@ -33,7 +29,7 @@ class GetFilterList implements GetsFilterList
     }
 
     /** @return array<array<string, string>> */
-    protected function getFilterList(string $path): array
+    protected function getFilterList(?string $path): array
     {
         if (! $path) {
             return [];
