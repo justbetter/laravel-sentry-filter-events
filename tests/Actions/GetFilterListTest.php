@@ -24,7 +24,7 @@ final class GetFilterListTest extends TestCase
         /** @var GetFilterList $action */
         $action = resolve(GetFilterList::class);
 
-        $messages = $action->getCached();
+        $messages = $action->get();
 
         $this->assertEqualsCanonicalizing($testData, $messages);
     }
@@ -35,7 +35,7 @@ final class GetFilterListTest extends TestCase
         /** @var GetFilterList $action */
         $action = resolve(GetFilterList::class);
 
-        $messages = $action->getCached('invalid');
+        $messages = $action->get('invalid');
 
         $this->assertEquals([], $messages);
     }
