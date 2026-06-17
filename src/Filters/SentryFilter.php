@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace JustBetter\LaravelSentryFilterEvents\Filters;
 
 use JustBetter\LaravelSentryFilterEvents\Actions\GetFilterList;
@@ -10,23 +12,21 @@ class SentryFilter
 {
     public static function beforeSend(Event $event, EventHint $hint): ?Event
     {
-        $filterList = resolve(GetFilterList::class)->getCached();
-
-        $scope = config('sentry-filter.default_scope');
+        $filterList = resolve(GetFilterList::class)->get();
 
         $messagesToFilter = collect($filterList)->pluck('message')->whereNotNull();
         $exceptionsToFilter = collect($filterList)->pluck('exception')->whereNotNull();
 
         $exceptionMessages = collect($event->getExceptions())
-            ->map(fn ($exception) => $exception->getValue());
+            ->map(fn ($exception): string => $exception->getValue());
 
         if ($exceptionMessages->contains(
-            fn ($exception) => $messagesToFilter->contains(fn ($message) => str_contains($exception, $message))
+            fn ($exception) => $messagesToFilter->contains(fn ($message): bool => str_contains($exception, (string) $message))
         )) {
             return null;
         }
 
-        if ($exceptionsToFilter->contains(fn ($exception) => $hint->exception instanceof $exception)) {
+        if ($exceptionsToFilter->contains(fn ($exception): bool => $hint->exception instanceof $exception)) {
             return null;
         }
 

@@ -46,9 +46,9 @@ final class SentryFilterTest extends TestCase
             $result = $action->beforeSend($event, $hint);
 
             if ($exception['shouldFilter']) {
-                $this->assertNull($result);
+                $this->assertNotInstanceOf(Event::class, $result);
             } else {
-                $this->assertNotNull($result);
+                $this->assertInstanceOf(Event::class, $result);
             }
         }
     }

@@ -38,6 +38,8 @@ You can also use an external JSON file to filter errors globally. This has the s
 },
 ```
 
+For simplicity, the config uses the `SENTRY_FILTER_LIST_LARAVEL` env variable by default to define the filter list url. This means that if you only want to use an external filter list, you don't need to publish the config file.
+
 ## Scopes
 
 This package contains the ability to use multiple scopes (defined in the config file). This allows you to filter different errors in different situations.
@@ -45,7 +47,7 @@ This package contains the ability to use multiple scopes (defined in the config 
 For example, if you have Sentry enabled on your frontend, you don't want to use the same filter list as you would for your backend errors. In that case, you could create a new scope in the config for your frontend errors and retrieve the list like so:
 
 ```php
-$filterList = resolve(\JustBetter\LaravelSentryFilterEvents\GetFilterList::class)->getCached('frontend');
+$filterList = resolve(\JustBetter\LaravelSentryFilterEvents\GetFilterList::class)->get('frontend');
 ```
 
 Take a look at how `src/filters/SentryFilter.php` works for more information.
