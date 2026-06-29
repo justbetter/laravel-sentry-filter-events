@@ -47,7 +47,7 @@ This package contains the ability to use multiple scopes (defined in the config 
 For example, if you have Sentry enabled on your frontend, you don't want to use the same filter list as you would for your backend errors. In that case, you could create a new scope in the config for your frontend errors and retrieve the list like so:
 
 ```php
-$filterList = resolve(\JustBetter\LaravelSentryFilterEvents\GetFilterList::class)->get('frontend');
+$filterList = resolve(\JustBetter\LaravelSentryFilterEvents\Actions\GetFilterList::class)->get('frontend');
 ```
 
 Take a look at how `src/filters/SentryFilter.php` works for more information.
