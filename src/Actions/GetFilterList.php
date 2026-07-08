@@ -7,6 +7,9 @@ namespace JustBetter\LaravelSentryFilterEvents\Actions;
 use Illuminate\Support\Facades\Http;
 use JustBetter\LaravelSentryFilterEvents\Contracts\GetsFilterList;
 
+/**
+ * @see \JustBetter\LaravelSentryFilterEvents\Tests\Actions\GetFilterListTest
+ */
 class GetFilterList implements GetsFilterList
 {
     /** @return array<array<string, string>> */
