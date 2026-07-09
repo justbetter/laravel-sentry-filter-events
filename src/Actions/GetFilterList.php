@@ -49,7 +49,7 @@ class GetFilterList implements GetsFilterList
 
         $response = Http::get($path);
 
-        return $response->json();
+        return $response->throw()->json();
     }
 
     public static function bind(): void
