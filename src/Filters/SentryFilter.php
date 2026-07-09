@@ -8,9 +8,6 @@ use JustBetter\LaravelSentryFilterEvents\Actions\GetFilterList;
 use Sentry\Event;
 use Sentry\EventHint;
 
-/**
- * @see \JustBetter\LaravelSentryFilterEvents\Tests\Filters\SentryFilterTest
- */
 class SentryFilter
 {
     public static function beforeSend(Event $event, EventHint $hint): ?Event

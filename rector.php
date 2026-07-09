@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Rector\CodingStyle\Rector\PostInc\PostIncDecToPreIncDecRector;
 use Rector\Config\RectorConfig;
+use Rector\PHPUnit\CodeQuality\Rector\Class_\AddSeeTestAnnotationRector;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -13,6 +14,7 @@ return RectorConfig::configure()
     ->withPhpSets()
     ->withSkip([
         PostIncDecToPreIncDecRector::class,
+        AddSeeTestAnnotationRector::class,
     ])
     ->withPreparedSets(
         deadCode: true,
